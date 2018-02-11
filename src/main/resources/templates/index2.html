@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование базы</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../scripts/app.js"></script>
+
+</head>
+<body onload="document.getElementById('lkmdata').reset()">
+
+<div id="left_block">
+    <p>Лакокрасочные материалы</p>
+    <ul id="lkmlist" onclick="eventDelegation(event)">
+
+        <li th:each="lkm :${lkm}" th:id ="${lkm.id}" th:text="${lkm.name}">
+
+        </li>
+
+    </ul>
+</div>
+<div id="button_block">
+    <input type="button" value="Копировать" onclick="doSomething(createCopy)" class="button"/>
+    <input type="button" value="Создать" onclick="doSomething(createNewEntity)" class="button"/>
+    <br/><br/>
+    <input type="button" value="Сохранить" onclick="save()" class="button"/>
+    <input type="button" value="Удалить" onclick="del()" class="button"/>
+</div>
+
+<div id="right_block">
+    <form id="lkmdata">
+        <table>
+            <tr hidden="true">
+                <td><label>Id</label></td>
+                <td><textarea id="lkmid" rows="1" cols="90"/></td>
+            </tr>
+            <tr>
+                <td><label>Название</label></td>
+                <td><textarea id="lkmname" rows="1" cols="90" onchange="updateListElementById()"/></td>
+            </tr>
+            <tr>
+                <td><label>Основа</label></td>
+                <td>
+                    <select id="lkmbase">
+                        <option>Алкидноуретановые</option>
+                        <option>Полиуретановые</option>
+                        <option>Глифталевые</option>
+                        <option>Фенолоалкидные</option>
+                        <option>Кремнийорганические</option>
+                        <option>Фенольные</option>
+                        <option>Меламиновые</option>
+                        <option>Циклогексаноновые</option>
+                        <option>Мочевинные (карбамидные)</option>
+                        <option>Эпоксидные</option>
+                        <option>Полиэфирные насыщенные</option>
+                        <option>Этрифталевые</option>
+                        <option>Пентафталевые</option>
+                        <option>Эпоксиэфирные</option>
+                        <option>Полиэфирные ненасыщенные</option>
+                        <option>Полиакрилатные</option>
+                        <option>алкидно-акриловые краски</option>
+                        <option>Масляно- и алкидностирольные</option>
+                        <option>Поливинилацетатные</option>
+                        <option>Нефтеполимерные</option>
+                        <option>Поливинилацетальные</option>
+                        <option>Фторопластовые</option>
+                        <option>На основе сополимеров винилацетата</option>
+                        <option>Перхлорвиниловые</option>
+                        <option>Каучуковые</option>
+                        <option>На основе сополимеров винилхлорида</option>
+                        <option>Битумные</option>
+                        <option>Шеллачные</option>
+                        <option>Канифольные</option>
+                        <option>Янтарные</option>
+                        <option>Масляные</option>
+                        <option>Ацетобутиратоцеллюлозные</option>
+                        <option>Нитроцеллюлозные</option>
+                        <option>Ацетилцеллюлозные</option>
+                        <option>Этилцеллюлозные</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>краткое описание</label></td>
+                <td><textarea id="shortdescription" rows="1" cols="90"/></td>
+            </tr>
+            <tr>
+                <td><label>Полное описание</label></td>
+                <td><textarea id="description" rows="5" cols="90"/></td>
+            </tr>
+            <tr>
+                <td><label>Назначение</label></td>
+                <td><textarea id="destination"  rows="5" cols="90"/></td>
+            </tr>
+            <tr>
+                <td><label>Доступные цвета</label></td>
+                <td><textarea id="colors"  rows="2" cols="90"/></td>
+            </tr>
+            <tr>
+                <td><label>Инстукция по пременению</label></td>
+                <td><textarea id="useinstruction" rows="5" cols="90"/></td>
+            </tr>
+
+            <div id="hidden">
+
+                <tr>
+                    <td><label>Количество слоев</label></td>
+                    <td><textarea id="layers" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Укрывистость</label></td>
+                    <td><textarea id="spreadingcapacity" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Толщина одного слоя</label></td>
+                    <td><textarea id="layerThickness" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Эластичность</label></td>
+                    <td><textarea id="ductilityThickness" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Время высыхания</label></td>
+                    <td><textarea id="dryingtime" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Твердость пленки</label></td>
+                    <td><textarea id="hardness" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Расход на один слой</label></td>
+                    <td><textarea id="charge" rows="1" cols="90"/></td>
+                </tr>
+                <tr>
+                    <td><label>Сухой остаток</label></td>
+                    <td><textarea id="solids" rows="1" cols="90"/></td>
+                </tr>
+
+            </div>
+
+        </table>
+
+    </form>
+</div>
+
+</body>
+</html>
